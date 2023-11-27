@@ -1,0 +1,4 @@
+enum ConsumptionTemplateIconPosition {
+  LEFT,
+  RIGHT
+}

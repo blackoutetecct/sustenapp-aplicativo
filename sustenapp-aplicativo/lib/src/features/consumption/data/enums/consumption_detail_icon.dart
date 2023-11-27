@@ -1,0 +1,8 @@
+enum ConsumptionDetailIcon {
+  BOLT_YELLOW,
+  BOLT_THUNDER_BLUE,
+  BOLT_THUNDER_YELLOW,
+  CUP_BLUE,
+  FAUCET_LEFT,
+  FAUCET_RIGHT,
+}
