@@ -7,5 +7,8 @@
 #
 ### TECNOLOGIAS
 
+![Flutter](https://img.shields.io/badge/Flutter-0D1117?style=for-the-badge&logo=Flutter&logoColor=00979D&labelColor=0D1117)&nbsp;
+![Dart](https://img.shields.io/badge/Dart-0D1117?style=for-the-badge&logo=Dart&logoColor=00599C&labelColor=0D1117)&nbsp;
+
 #
 ### HOSPEDADO
