@@ -17,7 +17,9 @@ jobs:
       working-directory: ./sustenapp-aplicativo
       run: flutter pub get
     # Now build apk
-    - run: flutter build apk --split-per-abi
+    - name: Setup flutter packages
+      working-directory: ./sustenapp-aplicativo
+      run: flutter build apk --split-per-abi
     # now relase the just created build
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
