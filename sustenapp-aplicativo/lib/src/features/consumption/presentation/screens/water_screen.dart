@@ -79,20 +79,19 @@ class _WaterScreenState extends ConsumerState<WaterScreen> {
                         width: constraints.maxWidth * 0.4,
                         child: ConsumptionDetail(
                           icon: ConsumptionDetailIcon.FAUCET_RIGHT,
-                          value: hidricData.averageDailyConsumption
-                              .toStringAsPrecision(2),
+                          value: hidricData.averageDailyConsumption / 30,
                           type: 'ÁGUA',
-                          price: (hidricData.estimatedprice / 30).roundToDouble(),
+                          price: (hidricData.estimatedprice / 30),
                           textStyle: ConsumptionDetailTextStyle.SECONDARY,
                         )),
                     SizedBox(
                         width: constraints.maxWidth * 0.4,
                         child: ConsumptionDetail(
                           icon: ConsumptionDetailIcon.CUP_BLUE,
-                          value: hidricData.consumption.toString(),
+                          value: (hidricData.consumption),
                           type: 'ÁGUA',
                           price:
-                              hidricData.estimatedprice.roundToDouble(),
+                              hidricData.estimatedprice,
                           titleStyle: ConsumptionDetailTextStyle.SECONDARY,
                           textStyle: ConsumptionDetailTextStyle.SECONDARY,
                         ))

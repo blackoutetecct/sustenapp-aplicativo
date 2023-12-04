@@ -19,9 +19,17 @@ class EnergyScreen extends ConsumerStatefulWidget {
 }
 
 class _EnergyScreenState extends ConsumerState<EnergyScreen> {
+
+   late ConsumptionData electricData;
+
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    electricData = ref.watch(electricDataProvider);
+  }
+
   @override
   Widget build(BuildContext context) {
-    ConsumptionData electricData = ref.watch(electricDataProvider);
 
     return TabScreensTemplate(
       title: "ENERGIA",
@@ -39,7 +47,7 @@ class _EnergyScreenState extends ConsumerState<EnergyScreen> {
                 height: constraints.maxHeight * 0.12,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: constraints.maxHeight * 0.03,
+                    horizontal: constraints.maxHeight * 0.025,
                   ),
                   child: const Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -78,10 +86,9 @@ class _EnergyScreenState extends ConsumerState<EnergyScreen> {
                         width: constraints.maxWidth * 0.4,
                         child: ConsumptionDetail(
                           icon: ConsumptionDetailIcon.BOLT_THUNDER_BLUE,
-                          value: electricData.averageDailyConsumption
-                              .toStringAsPrecision(2),
+                          value: electricData.averageDailyConsumption /30,
                           type: 'ENERGIA',
-                          price: (electricData.estimatedprice / 30).roundToDouble(),
+                          price: (electricData.estimatedprice / 30),
                           textStyle: ConsumptionDetailTextStyle.SECONDARY,
                           titleStyle: ConsumptionDetailTextStyle.SECONDARY,
                         )),
@@ -89,9 +96,9 @@ class _EnergyScreenState extends ConsumerState<EnergyScreen> {
                         width: constraints.maxWidth * 0.4,
                         child: ConsumptionDetail(
                           icon: ConsumptionDetailIcon.BOLT_THUNDER_YELLOW,
-                          value: electricData.consumption.toString(),
+                          value: electricData.consumption,
                           type: 'ENERGIA',
-                          price: electricData.estimatedprice.roundToDouble(),
+                          price: electricData.estimatedprice,
                           titleStyle: ConsumptionDetailTextStyle.PRIMARY,
                           textStyle: ConsumptionDetailTextStyle.SECONDARY,
                         )),

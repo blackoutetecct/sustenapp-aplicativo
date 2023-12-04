@@ -107,9 +107,9 @@ class _RoomDetailState extends ConsumerState<RoomDetail> {
                           width: constraints.maxWidth * 0.4,
                           child: const ConsumptionDetail(
                             icon: ConsumptionDetailIcon.BOLT_THUNDER_BLUE,
-                            value: "49",
+                            value: 0,
                             type: 'ENERGIA',
-                            price: 5.96,
+                            price: 0.0,
                             textStyle: ConsumptionDetailTextStyle.SECONDARY,
                             titleStyle: ConsumptionDetailTextStyle.SECONDARY,
                           )),
@@ -117,9 +117,9 @@ class _RoomDetailState extends ConsumerState<RoomDetail> {
                         width: constraints.maxWidth * 0.4,
                         child: const ConsumptionDetail(
                           icon: ConsumptionDetailIcon.BOLT_THUNDER_YELLOW,
-                          value: "491",
+                          value: 0,
                           type: 'ENERGIA',
-                          price: 50.96,
+                          price: 0.0,
                           titleStyle: ConsumptionDetailTextStyle.PRIMARY,
                           textStyle: ConsumptionDetailTextStyle.SECONDARY,
                         ),

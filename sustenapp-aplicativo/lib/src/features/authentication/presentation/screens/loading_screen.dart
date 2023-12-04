@@ -21,16 +21,20 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     final useCase = CheckUserAuthenticationStatus(
       authenticationRepository: AuthenticationRepositoryImpl(),
       context: context,
       ref: ref,
     );
     useCase.call();
+  }
 
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     final height = MediaQuery.sizeOf(context).height;
 
     return Scaffold(

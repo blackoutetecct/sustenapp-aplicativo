@@ -41,9 +41,9 @@ class LoginUseCase {
       await prefs.setString("userName", response.data['nome']);
       await prefs.setString("userEmail", response.data['email']);
 
-      redirectToPage("/tab_routes", context);
+      redirectWithPopToPage("/tab_routes", context);
     }).catchError((err) {
-      error.state = "Credenciasis invalidas";
+      error.state = "Credenciais inválidas";
     });
   }
 }

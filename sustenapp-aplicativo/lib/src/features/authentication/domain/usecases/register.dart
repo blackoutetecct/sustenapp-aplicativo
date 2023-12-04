@@ -50,10 +50,10 @@ class RegisterUseCase {
         await prefs.setString("userName", response.data['nome']);
         await prefs.setString("userEmail", response.data['email']);
 
-        redirectToPage("/tab_routes", context);
+        redirectWithPopToPage("/tab_routes", context);
       });
     }).catchError((err) {
-      registerErrorProvider.state = "Usuário ja cadastrado";
+      registerErrorProvider.state = "Usuário já cadastrado.";
     });
   }
 }

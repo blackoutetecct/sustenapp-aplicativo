@@ -98,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                               prefixIcon: Icons.lock,
                               inputAction: TextInputAction.done,
                               inputType: TextInputType.text,
-                              isObscure: true,
+                              isPassword: true,
                               validator: FormValidator.validatePasswordField,
                               controller: passwordController,
                             ),

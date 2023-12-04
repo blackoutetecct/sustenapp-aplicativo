@@ -99,10 +99,20 @@ class FormValidator {
 
   // Function to validate CPF using the algorithm
   static bool isValidCPF(String cpf) {
+    const blacklist = [
+      "11111111111",
+      "22222222222",
+      "33333333333",
+      "44444444444",
+      "55555555555",
+      "66666666666",
+      "77777777777",
+      "88888888888",
+      "99999999999",
+      "00000000000"
+    ];
 
-    const blacklist = ["11111111111", "22222222222", "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999", "00000000000"];
-    
-    if(blacklist.contains(cpf)){
+    if (blacklist.contains(cpf)) {
       return false;
     }
 
@@ -123,4 +133,16 @@ class FormValidator {
     return cpfDigits[9] == digit1 && cpfDigits[10] == digit2;
   }
 
+  static dynamic validateIpAddress(dynamic ipAddress) {
+    if (ipAddress.isEmpty) {
+      return "Campo obrigatório!";
+    }
+
+    final ipPattern = RegExp(
+        r'^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$');
+    if (!ipPattern.hasMatch(ipAddress)) {
+      return "Endereço de IP inválido";
+    }
+      return null;
+  }
 }

@@ -36,7 +36,7 @@ class WaterGraph extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: labels.map(
                     (item) => MyText(
-                      text: "${item}ml",
+                      text: "${item}m³",
                       fontSize: 14,
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w600,

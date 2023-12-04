@@ -77,7 +77,7 @@ class RoomsList extends ConsumerWidget {
                 child: Container(
                   child: const Center(
                     child: Text(
-                      "Nenhum dispositivo cadastrado. Clique no ícone + para registrar um novo dispositivo.",
+                      "Nenhum cômodo cadastrado. Clique no ícone + para registrar um novo cômodo.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,

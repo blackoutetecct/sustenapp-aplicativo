@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:susten_app/src/core/theme/theme.dart';
 import 'package:susten_app/src/features/consumption/domain/repositories/esp_repository.dart';
 
-class DeviceCard extends StatefulWidget {
+class DeviceCard extends ConsumerStatefulWidget {
   final BoxConstraints constrants;
   final String name;
   final int port;
@@ -20,10 +21,11 @@ class DeviceCard extends StatefulWidget {
   _DeviceCardState createState() => _DeviceCardState();
 }
 
-class _DeviceCardState extends State<DeviceCard> {
+class _DeviceCardState extends ConsumerState<DeviceCard> {
   bool isActive = false;
+  bool firstLoad = true;
 
-  late String url;
+  String url = "";
 
   void updateState(bool? value) {
     if (mounted) {
@@ -36,22 +38,34 @@ class _DeviceCardState extends State<DeviceCard> {
   }
 
   void changeDeviceStatus() {
-    widget.espRepo.changeDeviceStatus(widget.port).then((value) {
+    widget.espRepo.changeDeviceStatus(widget.port, ref).then((value) {
       updateState(null);
     });
   }
 
   @override
-  void initState() {
-    url = "assets/images/${widget.name.toLowerCase()}-off.png";
-    widget.espRepo.isDeviceOn(widget.port).then((value) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {
+        url = "assets/images/${widget.name.toLowerCase()}-off.png";
+    });
+    widget.espRepo.isDeviceOn(widget.port, ref).then((value) {
       updateState(value);
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    if (firstLoad) {
+      setState(() {
+        firstLoad = false;
+      });
+      widget.espRepo.isDeviceOn(widget.port, ref).then((value) {
+        updateState(value);
+      });
+    }
+
     return GestureDetector(
       onTap: changeDeviceStatus,
       child: Container(
@@ -69,17 +83,20 @@ class _DeviceCardState extends State<DeviceCard> {
                 children: [
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      url,
-                      width: widget.constrants.maxWidth * 0.15,
-                      height: widget.constrants.maxHeight * 0.13,
+                    child: Visibility(
+                      visible: url.isNotEmpty,
+                      child: Image.asset(
+                        url,
+                        width: widget.constrants.maxWidth * 0.15,
+                        height: widget.constrants.maxHeight * 0.13,
+                      ),
                     ),
                   ),
                   //MOME
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.name,
+                      widget.name.toUpperCase(),
                       style: TextStyle(
                           color: isActive ? Colors.white : primaryColor,
                           fontWeight: FontWeight.bold,

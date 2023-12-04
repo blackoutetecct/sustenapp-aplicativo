@@ -18,25 +18,28 @@ class CreateDeviceUseCase {
     required WidgetRef ref,
     required BuildContext context,
   }) async {
-    GetPortResponse portResponse = await espRepo.getPort();
+    GetPortResponse portResponse = await espRepo.getPort(ref);
 
     await deviceRepo
-        .create(name: textController.text, room: room, port: portResponse.port)
+        .create(
+            name: textController.text.toLowerCase(),
+            room: room,
+            port: portResponse.port)
         .then((value) {
       final devicesState = ref.read(devicesProvider.notifier);
       devicesState.state = [...devicesState.state, value];
 
-       espRepo.assignPort(portResponse.port);
+      espRepo.assignPort(portResponse.port, ref).then((value) {
+        showMySnackBar(
+          context: context,
+          text: "Dispositivo cadastrado com sucesso",
+          type: MySnackBarType.SUCCESS,
+        );
 
-      showMySnackBar(
-        context: context,
-        text: "Dispositivo cadastrado com sucesso",
-        type: MySnackBarType.SUCCESS,
-      );
+        Navigator.of(context).pop();
 
-      Navigator.of(context).pop();
-
-      textController.clear();
+        textController.clear();
+      });
     }).catchError((error) {
       Navigator.of(context).pop();
 

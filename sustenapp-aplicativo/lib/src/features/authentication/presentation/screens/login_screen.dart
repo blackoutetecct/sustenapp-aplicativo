@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                               prefixIcon: Icons.lock,
                               inputAction: TextInputAction.done,
                               inputType: TextInputType.text,
-                              isObscure: true,
+                              isPassword: true,
                               validator: FormValidator.validateEmptyField,
                               controller: passwordController,
                             ),

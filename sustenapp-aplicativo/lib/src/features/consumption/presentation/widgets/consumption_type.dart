@@ -7,7 +7,7 @@ class ConsumptionType extends StatelessWidget {
   final BoxConstraints parentConstraints;
   final String type;
   final ConsumptionDetailIcon icon;
-  final String value;
+  final double value;
   final double price;
 
   const ConsumptionType({

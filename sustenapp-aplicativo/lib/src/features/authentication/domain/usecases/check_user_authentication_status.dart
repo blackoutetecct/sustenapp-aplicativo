@@ -32,9 +32,9 @@ class CheckUserAuthenticationStatus {
       userNameState.state = userName;
       userEmailState.state = userEmail;
 
-      redirectToPage("/tab_routes", context);
+      redirectWithPopToPage("/tab_routes", context);
     } else {
-      redirectToPage("/welcome", context);
+      redirectWithPopToPage("/welcome", context);
     }
   }
 }

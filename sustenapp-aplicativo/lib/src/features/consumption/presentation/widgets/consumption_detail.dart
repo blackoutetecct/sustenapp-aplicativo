@@ -6,7 +6,7 @@ import 'package:susten_app/src/features/consumption/data/enums/consumption_detai
 
 class ConsumptionDetail extends StatelessWidget {
   final ConsumptionDetailIcon icon;
-  final String value;
+  final double value;
   final String type;
   final double price;
   final ConsumptionDetailTextStyle? titleStyle;
@@ -55,11 +55,11 @@ class ConsumptionDetail extends StatelessWidget {
           children: [
             Image.asset(
               getIconPath(),
-              width: constraint.maxWidth * 0.25,
+              width: constraint.maxWidth * 0.23,
               fit: BoxFit.contain,
             ),
             const SizedBox(
-              width: 10,
+              width: 7,
             ),
             Container(
               child: Column(
@@ -67,25 +67,25 @@ class ConsumptionDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyText(
-                    text: "$value${type == "ÁGUA" ? 'ml' : 'Kw/h'}",
+                    text: "${value.toStringAsFixed(2)}${type == "ÁGUA" ? ' m³' : ' Kw/h'}",
                     color: titleStyle == ConsumptionDetailTextStyle.PRIMARY
                         ? yellowColor
                         : primaryColor,
                     fontFamily: 'Lexend',
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                   const SizedBox(
                     height: 3,
                   ),
                   MyText(
-                    text: "R\$ ${price.toString().replaceFirst('.', ',')}",
+                    text: "R\$ ${price.toStringAsFixed(2).replaceAll('.', ',')}",
                     color: textStyle == ConsumptionDetailTextStyle.PRIMARY
                         ? secondaryColor
                         : const Color(0xFF1E1E1E),
                     fontFamily: 'Lexend',
                     fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                    fontSize: 15.5,
                   ),
                 ],
               ),

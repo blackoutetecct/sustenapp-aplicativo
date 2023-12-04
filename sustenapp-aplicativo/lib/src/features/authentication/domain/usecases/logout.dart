@@ -8,7 +8,7 @@ class LogoutUseCase {
 
     await prefs.clear();
 
-    redirectToPage('/welcome', context);
+    redirectWithPopToPage('/welcome', context);
 
   }
 }

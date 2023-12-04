@@ -5,8 +5,11 @@ import 'package:susten_app/src/core/widgets/my_text.dart';
 import 'package:susten_app/src/core/widgets/tab_screens_template.dart';
 import 'package:susten_app/src/features/authentication/presentation/providers/user_data.dart';
 import 'package:susten_app/src/features/consumption/data/repositories/consumption_repository.dart';
+import 'package:susten_app/src/features/consumption/data/repositories/esp_repository.dart';
 import 'package:susten_app/src/features/consumption/domain/usecases/GetAllRooms.dart';
 import 'package:susten_app/src/features/consumption/domain/usecases/GetConsumptionData.dart';
+import 'package:susten_app/src/features/consumption/domain/usecases/GetEspIp.dart';
+import 'package:susten_app/src/features/consumption/domain/usecases/RegisterConsumption.dart';
 import 'package:susten_app/src/features/consumption/presentation/widgets/home_consumption_card.dart';
 import 'package:susten_app/src/features/consumption/presentation/widgets/home_greetings.dart';
 import 'package:susten_app/src/features/consumption/presentation/widgets/rooms_list.dart';
@@ -19,22 +22,28 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final GetConsumptionDataUseCase useCase =
+  final GetConsumptionDataUseCase getConsumptionDataUseCase =
       GetConsumptionDataUseCase(consumptionRepo: ConsumptionRepositoryImpl());
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  GetEspIpUseCase espIpUseCase = GetEspIpUseCase();
+
+  RegisterConsumptionUseCase registerConsumptionUseCase = RegisterConsumptionUseCase(espRepo: EspRepositoryImpl());
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     final GetAllRoomsUseCase getAllRoomsUseCase =
         GetAllRoomsUseCase(consumptionRepo: ConsumptionRepositoryImpl());
 
     getAllRoomsUseCase.call(ref: ref);
-    useCase.call(ref: ref);
+    espIpUseCase.call(context, ref);
+    getConsumptionDataUseCase.call(ref: ref);
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    registerConsumptionUseCase.call(ref);
+    
     return TabScreensTemplate(
       title: "INICIO",
       includesBackButton: false,
