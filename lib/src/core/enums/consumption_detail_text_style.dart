@@ -1,0 +1,4 @@
+enum ConsumptionDetailTextStyle {
+  PRIMARY,
+  SECONDARY
+}

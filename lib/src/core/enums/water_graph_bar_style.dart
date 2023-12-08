@@ -1,0 +1,4 @@
+enum WaterGraphBarStyle {
+  PRIMARY,
+  SECONDARY
+}

@@ -1,0 +1,4 @@
+enum ActivePerfilSectionEnum {
+  PERFIL,
+  STATISTICS,
+}

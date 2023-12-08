@@ -1,0 +1,4 @@
+enum ConsumptionTemplateContainerSize {
+  SMALL,
+  BIG
+}

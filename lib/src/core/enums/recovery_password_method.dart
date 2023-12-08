@@ -1,0 +1,4 @@
+enum RecoveryPasswordMethod {
+  SMS,
+  EMAIL
+}
